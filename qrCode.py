@@ -46,8 +46,20 @@ if (customize != ""):
     customize_choice = input("Enter choice: ")
     while(customize_choice != "5"):
         if (customize_choice == "1"):
-            color = input("Color of the qr code: ").lower()
-            background_color = input("Color of the background: ").lower()
+            colorMenu = """COLOR CHOICE
+            1. Input Color's Name
+            2. Input RGB Code
+            """
+            print(colorMenu)
+            colorInput = input("Enter the number choice: ")
+            if (colorInput == "1"):
+                color = input("Color of the qr code: ").lower()
+                background_color = input("Color of the background: ").lower()
+            elif (colorInput == "2"):
+                print("CODE COLOR")
+                color = rgbAsking()
+                print("BACKGROUND COLOR")
+                background_color = rgbAsking()
             colorBool = True
             maskBool = False
             styleBool = False
@@ -113,7 +125,9 @@ try:
     # Set to <None> and use the <fit> parameter when making the code to determine this automatically.
     # box_size: controls how many pixels each "box" of the QR code is.
     # border: controls how many boxes thick the border should be ( the default is 4, which is the minimum according to the specs).
+    
     qr.add_data(website_link)
+    # qr.make(fit=True)
     qr.make()
     image = qr.make_image(fill_color=color, back_color=background_color)
     
@@ -140,7 +154,7 @@ try:
         if (maskInput == "1"):
             print("FRONT COLOR")
             front_color = rgbAsking()
-            print("BACKGROUND COLOR")
+            print("BACKGROUND COLOR - DO NOT PICK 0,0,0")
             background_color = rgbAsking()
             image = qr.make_image(image_factory=StyledPilImage, color_mask=SolidFillColorMask(background_color,front_color))
             
@@ -149,7 +163,7 @@ try:
             center_color = rgbAsking()
             print("EDGE COLOR")
             edge_color = rgbAsking()
-            print("BACKGROUND COLOR")
+            print("BACKGROUND COLOR - DO NOT PICK 0,0,0")
             background_color = rgbAsking()
             image = qr.make_image(image_factory=StyledPilImage, color_mask=RadialGradiantColorMask(background_color,center_color,edge_color))
             
@@ -158,7 +172,7 @@ try:
             center_color = rgbAsking()
             print("EDGE COLOR")
             edge_color = rgbAsking()
-            print("BACKGROUND COLOR")
+            print("BACKGROUND COLOR - DO NOT PICK 0,0,0")
             background_color = rgbAsking()
             image = qr.make_image(image_factory=StyledPilImage, color_mask=SquareGradiantColorMask(background_color, center_color,edge_color))
             
@@ -167,7 +181,7 @@ try:
             left_color = rgbAsking()
             print("RIGHT COLOR")
             right_color = rgbAsking()
-            print("BACKGROUND COLOR")
+            print("BACKGROUND COLOR - DO NOT PICK 0,0,0")
             background_color = rgbAsking()
             image = qr.make_image(image_factory=StyledPilImage, color_mask=HorizontalGradiantColorMask(background_color,left_color,right_color))
             
@@ -176,7 +190,7 @@ try:
             top_color = rgbAsking()
             print("BOTTOM COLOR")
             bottom_color = rgbAsking()
-            print("BACKGROUND COLOR")
+            print("BACKGROUND COLOR - DO NOT PICK 0,0,0")
             background_color = rgbAsking()
             image = qr.make_image(image_factory=StyledPilImage, color_mask=VerticalGradiantColorMask(background_color,top_color,bottom_color))
             
